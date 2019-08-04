@@ -1,0 +1,43 @@
+{{- if .Values.externalIngress.enabled -}}
+{{- $serviceName := include "generic-service.fullname" . -}}
+{{- $servicePort := .Values.service.externalPort -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+  {{- range $key, $value := .Values.externalIngress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  name: {{ template "generic-service.fullname" . }}-external
+  labels:
+    app: {{ template "generic-service.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  rules:
+  {{- range .Values.externalIngress.hosts }}
+    - host: {{ . }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+  {{- end -}}
+  {{- range .Values.externalIngress.hostsWithPaths }}
+    - host: {{ .host }}
+      http:
+        paths:
+        {{- range .paths }}
+          - path: {{ . }}
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+        {{- end -}}
+  {{- end -}}
+  {{- if .Values.externalIngress.tls }}
+  tls:
+{{ toYaml .Values.externalIngress.tls | indent 4 }}
+  {{- end -}}
+{{- end -}}

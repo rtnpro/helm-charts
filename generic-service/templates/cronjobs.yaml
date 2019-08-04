@@ -1,0 +1,57 @@
+{{- if .Values.cronJobs }}
+{{- $global := . }}
+{{- range $job := .Values.cronJobs }}
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ $global.Release.Name }}-{{ $job.name }}
+  labels:
+    app: {{ template "generic-service.name" $global }}
+    chart: {{ $global.Chart.Name }}-{{ $global.Chart.Version | replace "+" "_" }}
+    release: {{ $global.Release.Name }}
+    heritage: {{ $global.Release.Service }}
+spec:
+  schedule: {{ $job.schedule | quote }}
+  concurrencyPolicy: {{ $job.concurrencyPolicy | default "Forbid" | quote }}
+  {{- if $job.startingDeadlineSeconds }}
+  startingDeadlineSeconds: {{ $job.startingDeadlineSeconds }}
+  {{- end }}
+  successfulJobsHistoryLimit: {{ $job.successfulJobsHistoryLimit | default 10 }}
+  failedJobsHistoryLimit: {{ $job.failedJobsHistoryLimit | default 10 }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: {{ $job.name }}
+              image: "{{ $global.Values.image.repository }}:{{ $global.Values.image.tag }}"
+              command: {{ toJson $job.command }}
+              env:
+              - name: POD_IP
+                valueFrom:
+                  fieldRef:
+                    fieldPath: status.podIP
+              {{- if $global.Values.envValues }}
+              {{- range $key, $value := $global.Values.envValues }}
+              - name: {{ $key }}
+                value: {{ $value | quote }}
+              {{- end -}}
+              {{- end }}
+
+              {{- if $global.Values.envSecrets }}
+              {{- range $key, $_ := $global.Values.envSecrets }}
+              - name: {{ $key }}
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ template "generic-service.fullname" $global }}
+                    key: {{ $key }}
+              {{- end -}}
+              {{- end }}
+        {{- if $global.Values.nodeSelector }}
+          nodeSelector:
+{{ toYaml $global.Values.nodeSelector | indent 12 }}
+    {{- end }}
+{{- end }}
+{{- end }}

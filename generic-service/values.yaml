@@ -1,0 +1,102 @@
+# Default values for a generic service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+name: "hello-nginx"
+
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: nginx
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 80
+  #livenessProbe: /liveness
+  #readinessProbe: /readiness
+
+ingress:
+  enabled: true
+  # Used to create an Ingress record.
+  hosts:
+    - internal.example.com
+  tls:
+  - hosts:
+    - internal.example.com
+    secretName: generic-internal
+  annotations:
+    kubernetes.io/ingress.class: internal-ingress
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+externalIngress:
+  enabled: true
+  hosts:
+    - www.example.com
+  hostsWithPaths:
+    - host: www.example.com
+      paths:
+        - /
+  annotations:
+    kubernetes.io/ingress.class: external-ingress
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  tls:
+  - hosts:
+    - www.external.com
+    secretName: generic-external
+
+# cronJobs:
+#   - name: do-things
+#     schedule: "0 * * * *"
+#     command: ["python", "manage.py", "some_job"]
+#     concurrencyPolicy: Forbid
+#     startingDeadlineSeconds: 300
+#     successfulJobsHistoryLimit: 10
+#     failedJobsHistoryLimit: 10
+#   - name: do-things-2
+#     schedule: "0 * * * *"
+#     command: ["python", "manage.py", "some_job_2"]
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  mountPath: /data
+  subPath: ""
+  size: 1Gi
+  storageClass: ""
+
+config:
+  # key: value
+
+extraVolumeMounts:
+  - mountPath: /etc/foo.properties
+    name: config-volume
+    subPath: foo.properties
+
+mariadb:
+  enabled: false
+
+postgresql:
+  enabled: false
+
+redis:
+  enabled: false
+
+rabbitmq:
+  enabled: false

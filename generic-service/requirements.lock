@@ -1,0 +1,15 @@
+dependencies:
+- name: mariadb
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 5.11.3
+- name: postgresql
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 6.2.0
+- name: redis
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 9.0.1
+- name: rabbitmq
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 6.2.3
+digest: sha256:5f92da7f45276da23229eec835375d9cb6d7e11cdbb0471a015ef5ebde9a662b
+generated: "2019-08-04T14:08:18.256085+05:30"

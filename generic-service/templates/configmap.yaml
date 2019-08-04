@@ -1,0 +1,14 @@
+{{- if .Values.config }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "generic-service.fullname" . }}
+  labels:
+    app: "{{ template "generic-service.name" . }}"
+    component: "generic-service"
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+data:
+{{ toYaml .Values.config | indent 2 }}
+{{- end -}}
