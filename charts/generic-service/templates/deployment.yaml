@@ -20,6 +20,10 @@ spec:
         app: {{ template "generic-service.name" . }}
         release: {{ .Release.Name }}
     spec:
+      {{- if .Values.initContainers }}
+      initContainers:
+{{ toYaml .Values.initContainers | indent 8 }}
+      {{- end }}
       containers:
         - name: {{  template "generic-service.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -29,16 +33,16 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-            {{- if .Values.envValues }}
-            {{- range $key, $value := .Values.envValues }}
+            {{- if .Values.extraEnvValues }}
+            {{- range $key, $value := .Values.extraEnvValues }}
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end -}}
             {{- end -}}
 
-            {{- if .Values.envSecrets }}
+            {{- if .Values.extraEnvSecrets }}
             {{- $global := . }}
-            {{- range $key, $_ := .Values.envSecrets }}
+            {{- range $key, $_ := .Values.extraEnvSecrets }}
             - name: {{ $key }}
               valueFrom:
                 secretKeyRef:
@@ -49,65 +53,54 @@ spec:
 
           ports:
             - containerPort: {{ .Values.service.internalPort }}
+          {{- if .Values.livenessProbe }}
           livenessProbe:
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
             httpGet:
-              path: {{ .Values.service.livenessProbe }}
+              path: {{ .Values.livenessProbe.path }}
               port: {{ .Values.service.internalPort }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
           readinessProbe:
-            initialDelaySeconds: 20
-            timeoutSeconds: 5
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
             httpGet:
-              path: {{ .Values.service.readinessProbe }}
+              path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.service.internalPort }}
+          {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           volumeMounts:
-          {{- if .Values.persistence.enabled }}
+          {{- if .Values.data.enabled }}
           - name: data
-            mountPath: {{ .Values.persistence.mountPath }}
-            {{- if .Values.persistence.subPath }}
-            subPath: {{ .Values.persistence.subPath }}
+            mountPath: {{ .Values.data.mountPath }}
+            {{- if and .Values.data.persistence.enabled .Values.data.persistence.subPath }}
+            subPath: {{ .Values.data.persistence.subPath }}
             {{- end }}
           {{- end }}
           {{- if .Values.extraVolumeMounts }}
-{{ toYaml .Values.extraVolumeMounts | indent 12 }}
+{{ toYaml .Values.extraVolumeMounts | indent 10 }}
           {{- end }}
       volumes:
       {{- if .Values.extraVolumes }}
 {{ toYaml .Values.extraVolumes | indent 8 }}
       {{- end }}
-      {{- if .Values.config }}
+        {{- if .Values.config }}
         - name: config-volume
           configMap:
             name: {{ template "generic-service.fullname" . }}
-      {{- end }}
-{{- if and .Values.persistence.enabled .Values.persistence.existingClaim }}
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim }}
-{{- else if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
-  volumeClaimTemplates:
-    - metadata:
-        name: data
-        labels:
-          app: "{{ template "generic-service.name" . }}"
-          release: {{ .Release.Name | quote }}
-          heritage: {{ .Release.Service | quote }}
-      spec:
-        accessModes:
-        {{- range .Values.persistence.accessModes }}
-          - {{ . | quote }}
         {{- end }}
-        resources:
-          requests:
-            storage: {{ .Values.persistence.size | quote }}
-      {{- if .Values.persistence.storageClass }}
-      {{- if (eq "-" .Values.persistence.storageClass) }}
-        storageClassName: ""
-      {{- else }}
-        storageClassName: {{ .Values.persistence.storageClass | quote }}
-      {{- end }}
-      {{- end }}
-{{- end }}
+        {{- if .Values.data.enabled }}
+        - name: data
+          {{- if and .Values.data.persistence.enabled }}
+          persistentVolumeClaim:
+            {{- if .Values.data.persistence.existingClaim }}
+            claimName: {{ .Values.data.persistence.existingClaim }}
+            {{- else }}
+            claimName: {{ template "generic-service.fullname" . }}
+            {{- end }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- end }}

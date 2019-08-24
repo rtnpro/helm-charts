@@ -2,11 +2,19 @@ apiVersion: v1
 entries:
   generic-service:
   - apiVersion: v1
-    created: "2019-08-04T15:45:30.292475+05:30"
+    created: "2019-08-24T20:30:49.974628+05:30"
+    description: Generic chart for any service
+    digest: 19669f5bce2b062e7ad338b3dea5a93c5acb84804beb0c40906baba383f4fcea
+    name: generic-service
+    urls:
+    - generic-service-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    created: "2019-08-24T20:30:49.967675+05:30"
     description: Generic chart for any service
     digest: b7ce9cb5bf274d605de1fe309b5ad226b1fae4a2b7c07d404cd10202e9a8bf37
     name: generic-service
     urls:
     - generic-service-0.1.0.tgz
     version: 0.1.0
-generated: "2019-08-04T15:45:30.286852+05:30"
+generated: "2019-08-24T20:30:49.960265+05:30"

@@ -15,9 +15,20 @@ service:
   name: nginx
   type: ClusterIP
   externalPort: 80
-  internalPort: 80
-  #livenessProbe: /liveness
-  #readinessProbe: /readiness
+
+# livenessProbe:
+#   path: /liveness
+#   initialDelaySeconds: 15
+#   timeoutSeconds: 5
+
+# readinessProbe:
+#   path: /readiness
+#   initialDelaySeconds: 15
+#   timeoutSeconds: 5
+
+extraEnvValues: {}
+
+extraEnvSecrets: {}
 
 ingress:
   enabled: true
@@ -72,22 +83,23 @@ resources:
     cpu: 100m
     memory: 128Mi
 
-persistence:
+data:
   enabled: true
-  accessModes:
-    - ReadWriteOnce
   mountPath: /data
-  subPath: ""
-  size: 1Gi
-  storageClass: ""
+  persistence:
+    enabled: true
+    accessMode: ReadWriteOnce
+    subPath: ""
+    size: 1Gi
+    storageClass: ""
 
 config:
   # key: value
 
-extraVolumeMounts:
-  - mountPath: /etc/foo.properties
-    name: config-volume
-    subPath: foo.properties
+extraVolumeMounts: {}
+  # - mountPath: /etc/foo.properties
+  #   name: config-volume
+  #   subPath: foo.properties
 
 mariadb:
   enabled: false
