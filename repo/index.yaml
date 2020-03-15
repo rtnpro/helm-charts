@@ -2,7 +2,15 @@ apiVersion: v1
 entries:
   generic-service:
   - apiVersion: v1
-    created: "2020-01-18T17:14:32.918254-05:00"
+    created: "2020-03-15T16:00:40.948374+05:30"
+    description: Generic chart for any service
+    digest: 4dc103e30d2bd363df3f6a0972f5a594cbd9d51a3eabdb3fcbde5cc75d895ddc
+    name: generic-service
+    urls:
+    - generic-service-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v1
+    created: "2020-03-15T16:00:40.939536+05:30"
     description: Generic chart for any service
     digest: 19669f5bce2b062e7ad338b3dea5a93c5acb84804beb0c40906baba383f4fcea
     name: generic-service
@@ -10,7 +18,7 @@ entries:
     - generic-service-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2020-01-18T17:14:32.912063-05:00"
+    created: "2020-03-15T16:00:40.931866+05:30"
     description: Generic chart for any service
     digest: b7ce9cb5bf274d605de1fe309b5ad226b1fae4a2b7c07d404cd10202e9a8bf37
     name: generic-service
@@ -20,7 +28,7 @@ entries:
   sops-secrets-operator:
   - apiVersion: v1
     appVersion: 0.0.7
-    created: "2020-01-18T17:14:32.919391-05:00"
+    created: "2020-03-15T16:00:40.94999+05:30"
     description: sops secrets operator
     digest: 46423e80c35492bae76e56e88aec2b467aa0a5893a35b294c4fa3ac8ee7f1dcd
     maintainers:
@@ -32,4 +40,4 @@ entries:
     urls:
     - sops-secrets-operator-0.1.5.tgz
     version: 0.1.5
-generated: "2020-01-18T17:14:32.903004-05:00"
+generated: "2020-03-15T16:00:40.921252+05:30"
