@@ -11,6 +11,8 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+imagePullSecrets: []
+
 service:
   name: nginx
   type: ClusterIP
