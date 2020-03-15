@@ -32,6 +32,21 @@ spec:
         - name: {{  template "generic-service.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.workingDir }}
+          workingDir: {{ .Values.workingDir }}
+          {{- end }}
+          {{- if .Values.command }}
+          command:
+{{ toYaml .Values.command | indent 12 }}
+          {{- end }}
+          {{- if .Values.args }}
+          args:
+{{ toYaml .Values.args | indent 12 }}
+          {{- end }}
+          {{- if .Values.lifecycle }}
+          lifecycle:
+{{ toYaml .Values.lifecycle | indent 12 }}
+          {{- end }}
           env:
             - name: POD_IP
               valueFrom:

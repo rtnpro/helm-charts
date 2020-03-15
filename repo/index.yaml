@@ -2,7 +2,15 @@ apiVersion: v1
 entries:
   generic-service:
   - apiVersion: v1
-    created: "2020-03-15T18:56:53.945027+05:30"
+    created: "2020-03-15T21:19:19.585393+05:30"
+    description: Generic chart for any service
+    digest: 62d35b6bb0dfbf269b66327120737eb3a567aca710e51caff6b45e37850f9fe1
+    name: generic-service
+    urls:
+    - generic-service-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v1
+    created: "2020-03-15T21:19:19.579221+05:30"
     description: Generic chart for any service
     digest: cf1f6ddecb600ec49040ece2a5d928493d51839af1784240445400dcfa4cc136
     name: generic-service
@@ -10,7 +18,7 @@ entries:
     - generic-service-0.2.1.tgz
     version: 0.2.1
   - apiVersion: v1
-    created: "2020-03-15T18:56:53.939082+05:30"
+    created: "2020-03-15T21:19:19.571896+05:30"
     description: Generic chart for any service
     digest: 4dc103e30d2bd363df3f6a0972f5a594cbd9d51a3eabdb3fcbde5cc75d895ddc
     name: generic-service
@@ -18,7 +26,7 @@ entries:
     - generic-service-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: "2020-03-15T18:56:53.931599+05:30"
+    created: "2020-03-15T21:19:19.563834+05:30"
     description: Generic chart for any service
     digest: 19669f5bce2b062e7ad338b3dea5a93c5acb84804beb0c40906baba383f4fcea
     name: generic-service
@@ -26,7 +34,7 @@ entries:
     - generic-service-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2020-03-15T18:56:53.925325+05:30"
+    created: "2020-03-15T21:19:19.556657+05:30"
     description: Generic chart for any service
     digest: b7ce9cb5bf274d605de1fe309b5ad226b1fae4a2b7c07d404cd10202e9a8bf37
     name: generic-service
@@ -36,7 +44,7 @@ entries:
   sops-secrets-operator:
   - apiVersion: v1
     appVersion: 0.0.7
-    created: "2020-03-15T18:56:53.946471+05:30"
+    created: "2020-03-15T21:19:19.586729+05:30"
     description: sops secrets operator
     digest: 46423e80c35492bae76e56e88aec2b467aa0a5893a35b294c4fa3ac8ee7f1dcd
     maintainers:
@@ -48,4 +56,4 @@ entries:
     urls:
     - sops-secrets-operator-0.1.5.tgz
     version: 0.1.5
-generated: "2020-03-15T18:56:53.916959+05:30"
+generated: "2020-03-15T21:19:19.548372+05:30"
