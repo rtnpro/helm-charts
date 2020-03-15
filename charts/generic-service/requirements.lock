@@ -1,15 +1,18 @@
 dependencies:
 - name: mariadb
   repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 6.7.4
+  version: 6.13.0
 - name: postgresql
   repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 6.2.0
+  version: 6.5.9
 - name: redis
   repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 9.0.1
+  version: 9.5.5
 - name: rabbitmq
   repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 6.2.3
-digest: sha256:256c0fa063d1f72e5724e1c5fd6b99931dc3b364a7995c28ab8830fd01a4fdd2
-generated: "2019-08-04T20:38:54.743666+05:30"
+  version: 6.18.2
+- name: mongodb
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 7.8.9
+digest: sha256:79cd532c3c8100855c56e3a9829b5e2a7eb5157f371e56a6c6d3d90e01a21f30
+generated: "2020-03-15T15:53:15.328073+05:30"
