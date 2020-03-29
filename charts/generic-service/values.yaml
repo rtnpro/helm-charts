@@ -37,7 +37,7 @@ service:
 
 extraEnvValues: {}
 
-extraEnvSecrets: {}
+extraEnv: {}
 
 ingress:
   enabled: true

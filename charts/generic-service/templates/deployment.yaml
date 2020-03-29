@@ -58,18 +58,9 @@ spec:
               value: {{ $value | quote }}
             {{- end -}}
             {{- end -}}
-
-            {{- if .Values.extraEnvSecrets }}
-            {{- $global := . }}
-            {{- range $key, $_ := .Values.extraEnvSecrets }}
-            - name: {{ $key }}
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "generic-service.fullname" $global }}
-                  key: {{ $key }}
-            {{- end -}}
+            {{- if .Values.extraEnv }}
+            {{ toYaml .Values.extraEnv | nindent 12 }}
             {{- end }}
-
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           {{- if .Values.livenessProbe }}

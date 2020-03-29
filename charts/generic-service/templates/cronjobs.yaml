@@ -39,15 +39,8 @@ spec:
                 value: {{ $value | quote }}
               {{- end -}}
               {{- end }}
-
-              {{- if $global.Values.envSecrets }}
-              {{- range $key, $_ := $global.Values.envSecrets }}
-              - name: {{ $key }}
-                valueFrom:
-                  secretKeyRef:
-                    name: {{ template "generic-service.fullname" $global }}
-                    key: {{ $key }}
-              {{- end -}}
+              {{- if .Values.extraEnv }}
+              {{ toYaml .Values.extraEnv | nindent 14 }}
               {{- end }}
         {{- if $global.Values.nodeSelector }}
           nodeSelector:
