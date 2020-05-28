@@ -2,7 +2,28 @@ apiVersion: v1
 entries:
   generic-service:
   - apiVersion: v1
-    created: "2020-03-29T21:14:39.097964+05:30"
+    created: "2020-05-28T20:26:26.553372+05:30"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: redis.enabled
+      name: redis
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 9.x.x
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 7.x.x
     description: Generic chart for any service
     digest: c951ee6077bf20c6870851fb107b0a18b9ddc63f913b0766d3916455bdae947a
     name: generic-service
@@ -10,7 +31,28 @@ entries:
     - generic-service-0.3.0.tgz
     version: 0.3.0
   - apiVersion: v1
-    created: "2020-03-29T21:14:39.091543+05:30"
+    created: "2020-05-28T20:26:26.541642+05:30"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: redis.enabled
+      name: redis
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 9.x.x
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 7.x.x
     description: Generic chart for any service
     digest: 8d94ac08f5362bb1e1068e1ffd52fbc2d796879433db35b35f7f24f58f814d43
     name: generic-service
@@ -18,7 +60,28 @@ entries:
     - generic-service-0.2.3.tgz
     version: 0.2.3
   - apiVersion: v1
-    created: "2020-03-29T21:14:39.085356+05:30"
+    created: "2020-05-28T20:26:26.530366+05:30"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: redis.enabled
+      name: redis
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 9.x.x
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 7.x.x
     description: Generic chart for any service
     digest: 62d35b6bb0dfbf269b66327120737eb3a567aca710e51caff6b45e37850f9fe1
     name: generic-service
@@ -26,7 +89,28 @@ entries:
     - generic-service-0.2.2.tgz
     version: 0.2.2
   - apiVersion: v1
-    created: "2020-03-29T21:14:39.077615+05:30"
+    created: "2020-05-28T20:26:26.519262+05:30"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: redis.enabled
+      name: redis
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 9.x.x
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 7.x.x
     description: Generic chart for any service
     digest: cf1f6ddecb600ec49040ece2a5d928493d51839af1784240445400dcfa4cc136
     name: generic-service
@@ -34,7 +118,28 @@ entries:
     - generic-service-0.2.1.tgz
     version: 0.2.1
   - apiVersion: v1
-    created: "2020-03-29T21:14:39.070531+05:30"
+    created: "2020-05-28T20:26:26.508246+05:30"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: redis.enabled
+      name: redis
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 9.x.x
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 7.x.x
     description: Generic chart for any service
     digest: 4dc103e30d2bd363df3f6a0972f5a594cbd9d51a3eabdb3fcbde5cc75d895ddc
     name: generic-service
@@ -42,7 +147,24 @@ entries:
     - generic-service-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: "2020-03-29T21:14:39.063409+05:30"
+    created: "2020-05-28T20:26:26.49745+05:30"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: redis.enabled
+      name: redis
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 9.x.x
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
     description: Generic chart for any service
     digest: 19669f5bce2b062e7ad338b3dea5a93c5acb84804beb0c40906baba383f4fcea
     name: generic-service
@@ -50,7 +172,24 @@ entries:
     - generic-service-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2020-03-29T21:14:39.057799+05:30"
+    created: "2020-05-28T20:26:26.48862+05:30"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 5.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: redis.enabled
+      name: redis
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 9.x.x
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
     description: Generic chart for any service
     digest: b7ce9cb5bf274d605de1fe309b5ad226b1fae4a2b7c07d404cd10202e9a8bf37
     name: generic-service
@@ -60,7 +199,7 @@ entries:
   sops-secrets-operator:
   - apiVersion: v1
     appVersion: 0.0.7
-    created: "2020-03-29T21:14:39.099395+05:30"
+    created: "2020-05-28T20:26:26.554447+05:30"
     description: sops secrets operator
     digest: 46423e80c35492bae76e56e88aec2b467aa0a5893a35b294c4fa3ac8ee7f1dcd
     maintainers:
@@ -72,4 +211,29 @@ entries:
     urls:
     - sops-secrets-operator-0.1.5.tgz
     version: 0.1.5
-generated: "2020-03-29T21:14:39.050446+05:30"
+  velero:
+  - apiVersion: v1
+    appVersion: 1.4.0
+    created: "2020-05-28T20:26:26.556261+05:30"
+    description: A Helm chart for velero
+    digest: 3930111908a950f692bd27a1f4d452b4d7778c8243b94726a18cc0e9792479c3
+    home: https://github.com/vmware-tanzu/velero
+    icon: https://cdn-images-1.medium.com/max/1600/1*-9mb3AKnKdcL_QD3CMnthQ.png
+    maintainers:
+    - email: d-caruso@hotmail.it
+      name: domcar
+    - email: hfernandez@mesosphere.com
+      name: hectorj2f
+    - email: brubakern@vmware.com
+      name: nrb
+    - email: carlisiac@vmware.com
+      name: carlisia
+    - email: ashisham@vmware.com
+      name: ashish-amarnath
+    name: velero
+    sources:
+    - https://github.com/vmware-tanzu/velero
+    urls:
+    - velero-2.11.1.tgz
+    version: 2.11.1
+generated: "2020-05-28T20:26:26.478163+05:30"
