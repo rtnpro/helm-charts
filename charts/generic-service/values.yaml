@@ -21,6 +21,7 @@ imagePullSecrets: []
 # lifecycle: {}
 
 service:
+  enabled: true
   name: nginx
   type: ClusterIP
   externalPort: 80

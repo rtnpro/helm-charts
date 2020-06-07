@@ -2,7 +2,36 @@ apiVersion: v1
 entries:
   generic-service:
   - apiVersion: v1
-    created: "2020-05-28T20:26:26.553372+05:30"
+    created: "2020-06-07T20:42:00.729336+05:30"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: redis.enabled
+      name: redis
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 9.x.x
+    - condition: rabbitmq.enabled
+      name: rabbitmq
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 6.x.x
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 7.x.x
+    description: Generic chart for any service
+    digest: e3c06f3e2f35639c265116473219856f168b083212bece67e25739442c5a9a37
+    name: generic-service
+    urls:
+    - generic-service-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v1
+    created: "2020-06-07T20:42:00.717115+05:30"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -31,7 +60,7 @@ entries:
     - generic-service-0.3.0.tgz
     version: 0.3.0
   - apiVersion: v1
-    created: "2020-05-28T20:26:26.541642+05:30"
+    created: "2020-06-07T20:42:00.706787+05:30"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -60,7 +89,7 @@ entries:
     - generic-service-0.2.3.tgz
     version: 0.2.3
   - apiVersion: v1
-    created: "2020-05-28T20:26:26.530366+05:30"
+    created: "2020-06-07T20:42:00.695281+05:30"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -89,7 +118,7 @@ entries:
     - generic-service-0.2.2.tgz
     version: 0.2.2
   - apiVersion: v1
-    created: "2020-05-28T20:26:26.519262+05:30"
+    created: "2020-06-07T20:42:00.681193+05:30"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -118,7 +147,7 @@ entries:
     - generic-service-0.2.1.tgz
     version: 0.2.1
   - apiVersion: v1
-    created: "2020-05-28T20:26:26.508246+05:30"
+    created: "2020-06-07T20:42:00.669653+05:30"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -147,7 +176,7 @@ entries:
     - generic-service-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: "2020-05-28T20:26:26.49745+05:30"
+    created: "2020-06-07T20:42:00.658246+05:30"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -172,7 +201,7 @@ entries:
     - generic-service-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2020-05-28T20:26:26.48862+05:30"
+    created: "2020-06-07T20:42:00.647122+05:30"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -199,7 +228,7 @@ entries:
   sops-secrets-operator:
   - apiVersion: v1
     appVersion: 0.0.7
-    created: "2020-05-28T20:26:26.554447+05:30"
+    created: "2020-06-07T20:42:00.730963+05:30"
     description: sops secrets operator
     digest: 46423e80c35492bae76e56e88aec2b467aa0a5893a35b294c4fa3ac8ee7f1dcd
     maintainers:
@@ -214,7 +243,7 @@ entries:
   velero:
   - apiVersion: v1
     appVersion: 1.4.0
-    created: "2020-05-28T20:26:26.556261+05:30"
+    created: "2020-06-07T20:42:00.734021+05:30"
     description: A Helm chart for velero
     digest: 3930111908a950f692bd27a1f4d452b4d7778c8243b94726a18cc0e9792479c3
     home: https://github.com/vmware-tanzu/velero
@@ -236,4 +265,4 @@ entries:
     urls:
     - velero-2.11.1.tgz
     version: 2.11.1
-generated: "2020-05-28T20:26:26.478163+05:30"
+generated: "2020-06-07T20:42:00.635215+05:30"

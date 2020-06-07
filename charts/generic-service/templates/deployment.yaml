@@ -63,6 +63,7 @@ spec:
             {{- end }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
+          {{- if .Values.service.enabled }}
           {{- if .Values.livenessProbe }}
           livenessProbe:
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
@@ -78,6 +79,7 @@ spec:
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.service.internalPort }}
+          {{- end }}
           {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
