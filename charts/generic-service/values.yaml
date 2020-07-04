@@ -13,6 +13,9 @@ image:
 
 imagePullSecrets: []
 
+podLabels: {}
+podAnnotations: {}
+
 # workingDir: /app
 # command: tail
 # args:
