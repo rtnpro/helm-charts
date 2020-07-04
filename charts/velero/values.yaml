@@ -6,10 +6,7 @@
 # enabling restic). Required.
 image:
   repository: velero/velero
-  tag: v1.4.0
-  # Digest value example: sha256:d238835e151cec91c6a811fe3a89a66d3231d9f64d09e5f3c49552672d271f38. If used, it will
-  # take precedence over the image.tag.
-  # digest:
+  tag: v1.2.0
   pullPolicy: IfNotPresent
 
 # Annotations to add to the Velero deployment's pod template. Optional.
@@ -25,17 +22,11 @@ resources: {}
 # Init containers to add to the Velero deployment's pod spec. At least one plugin provider image is required.
 initContainers: []
   # - name: velero-plugin-for-aws
-  #   image: velero/velero-plugin-for-aws:v1.1.0
+  #   image: velero/velero-plugin-for-aws:v1.0.0
   #   imagePullPolicy: IfNotPresent
   #   volumeMounts:
   #     - mountPath: /target
   #       name: plugins
-
-# SecurityContext to use for the Velero deployment. Optional.
-# Set fsGroup for `AWS IAM Roles for Service Accounts`
-# see more informations at: https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html
-securityContext: {}
-  # fsGroup: 1337
 
 # Tolerations to use for the Velero deployment. Optional.
 tolerations: []
@@ -64,9 +55,6 @@ metrics:
     enabled: false
     additionalLabels: {}
 
-# Install CRDs as a templates. Enabled by default.
-installCRDs: true
-
 ##
 ## End of deployment-related settings.
 ##
@@ -86,9 +74,6 @@ configuration:
     # Cloud provider where backups should be stored. Usually should
     # match `configuration.provider`. Required.
     name:
-    # Provider for the backup storage location. If omitted
-    # `configuration.provider` will be used instead.
-    provider:
     # Bucket to store backups in. Required.
     bucket:
     # Prefix within bucket under which to store backups. Optional.
@@ -105,9 +90,6 @@ configuration:
     #  subscriptionId:
     #  storageAccount:
     #  publicUrl:
-    #  Name of the GCP service account to use for this backup storage location. Specify the
-    #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
-    #  serviceAccount:
 
   # Parameters for the `default` VolumeSnapshotLocation. See
   # https://velero.io/docs/v1.0.0/api-types/volumesnapshotlocation/
@@ -115,9 +97,6 @@ configuration:
     # Cloud provider where volume snapshots are being taken. Usually
     # should match `configuration.provider`. Required.,
     name:
-    # Provider for the backup storage location. If omitted
-    # `configuration.provider` will be used instead.
-    provider:
     # Additional provider-specific configuration. See link above
     # for details of required/optional fields for your provider.
     config: {}
@@ -146,17 +125,11 @@ configuration:
   # additional key/value pairs to be used as environment variables such as "AWS_CLUSTER_NAME: 'yourcluster.domain.tld'"
   extraEnvVars: {}
 
-  # Comma separated list of velero feature flags. default: empty
-  features:
-
   # Set log-level for Velero pod. Default: info. Other options: debug, warning, error, fatal, panic.
   logLevel:
 
   # Set log-format for Velero pod. Default: text. Other option: json.
   logFormat:
-
-  # Set extra CLI args for Velero pod. Default: empty
-  extraArgs:
 
 ##
 ## End of backup/snapshot location settings.
@@ -167,18 +140,15 @@ configuration:
 ## Settings for additional Velero resources.
 ##
 
+# Whether to create the Velero cluster role binding.
 rbac:
-  # Whether to create the Velero role and role binding to give all permissions to the namespace to Velero.
   create: true
-  # Whether to create the cluster role binding to give administrator permissions to Velero
-  clusterAdministrator: true
 
 # Information about the Kubernetes service account Velero uses.
 serviceAccount:
   server:
     create: true
     name:
-    annotations:
 
 # Info about the secret to be used by the Velero deployment, which
 # should contain credentials for the cloud provider IAM account you've
@@ -195,12 +165,8 @@ credentials:
   # true and `existingSecret` is empty. This should be the contents
   # of your IAM credentials file.
   secretContents: {}
-  # additional key/value pairs to be used as environment variables such as "DIGITALOCEAN_TOKEN: <your-key>". Values will be stored in the secret.
-  extraEnvVars: {}
 
-# Whether to create backupstoragelocation crd, if false => do not create a default backup location
-backupsEnabled: true
-# Whether to create volumesnapshotlocation crd, if false => disable snapshot feature
+# Wheter to create volumesnapshotlocation crd, if false => disable snapshot feature
 snapshotsEnabled: true
 
 # Whether to deploy the restic daemonset.
@@ -222,12 +188,6 @@ restic:
   # Extra volumeMounts for the Restic daemonset. Optional.
   extraVolumeMounts: []
 
-  # SecurityContext to use for the Velero deployment. Optional.
-  # Set fsGroup for `AWS IAM Roles for Service Accounts`
-  # see more informations at: https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html
-  securityContext: {}
-    # fsGroup: 1337
-
 # Backup schedules to create.
 # Eg:
 # schedules:
@@ -247,7 +207,7 @@ schedules: {}
 #       velero.io/plugin-config: ""
 #       velero.io/restic: RestoreItemAction
 #     data:
-#       image: velero/velero-restic-restore-helper:v1.3.1
+#       image: gcr.io/heptio-images/velero-restic-restore-help
 configMaps: {}
 
 ##
