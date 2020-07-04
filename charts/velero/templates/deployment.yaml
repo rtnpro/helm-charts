@@ -70,6 +70,9 @@ spec:
             {{- with .logFormat }}
             - --log-format={{ . }}
             {{- end }}
+            {{- range .extraArgs }}
+            - {{ . | quote }}
+            {{- end }}
           {{- end }}
           {{- if eq $provider "azure" }}
           envFrom:
